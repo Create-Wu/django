@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'response_json.apps.ResponseJsonConfig',
     'class_view.apps.ClassViewConfig',
+    'test.apps.ReqrespConfig',
+    'booktest_ORM.apps.OrmMyqslConfig',
+    'rest_framework',
 
 ]
 
@@ -54,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 以下是自定义的中间件
+    # 'users.middleware.my_middleware' #添加中间件
 ]
 
 ROOT_URLCONF = 'demo.urls'
@@ -80,14 +85,30 @@ WSGI_APPLICATION = 'demo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# 数据库配置
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '127.0.0.1',
+        'POST': 3306,
+        'USER': 'root',
+        'PASSWORD': 'mysql',
+        'NAME': 'django_mysql',
+    },
+    # 'default':{
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'HOST': '127.0.0.1',
+    #     'POST': 3306,
+    #     'USER': 'root',
+    #     'PASSWORD': 'mysql',
+    #     'NAME': 'meiduo'
+    # }
 }
 
-
+# DATABASE_ROUTERS =['prject.database_router.DatabaseAppsRouter']
+# DATABASE_APPS_MAPPING ={
+#     'test':'meiduo'
+# }
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -114,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'zh-hans'  #语言(中文)
 
 # TIME_ZONE = 'UTC'           #时区
-TIME_ZONE = 'Asia/Shanghai'           #时区
+TIME_ZONE = 'Asia/Shanghai'           #时区上海
 
 USE_I18N = True
 

@@ -10,7 +10,7 @@ from django.views import View
 
 def my_decorator(func):
 
-    print('装饰器被调用')
+    # print('装饰器被调用')
 
     def wrapper(request,*args,**kwargs):
         print('被装饰了')
@@ -39,7 +39,7 @@ class Parent_View(View):
 #使用面向对象多继承的特性，可以通过定义父类（作为扩展类），在父类中定义想要向类视图补充的方法，
 # 类视图继承这些扩展父类，便可实现代码复用。
 #定义的扩展父类名称通常以Mixin结尾。
-
+"""
 class listModelMixin(object):
 
     def list(self,*args,**kwargs):
@@ -63,7 +63,7 @@ class testModel(createModelMixin,listModelMixin,View):
         self.create(request)
 
 
-
+"""
 
 
 

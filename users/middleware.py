@@ -1,4 +1,4 @@
-# 中间件
+# 中间件 :
 
 def simple_middleware(get_response):
 
