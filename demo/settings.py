@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'test.apps.ReqrespConfig',
     'booktest_ORM.apps.OrmMyqslConfig',
     'rest_framework',
+    'django_filters',
 
 ]
 
@@ -94,7 +95,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'mysql',
         'NAME': 'django_mysql',
-    },
+    }
     # 'default':{
     #     'ENGINE': 'django.db.backends.mysql',
     #     'HOST': '127.0.0.1',
@@ -167,3 +168,30 @@ CACHES = {
 }
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+
+# 设置REST framework render渲染器
+
+REST_FRAMEWORK = {
+
+    'DEFAULT_RENDERER_CLASSES': (  # 默认响应渲染类
+        'rest_framework.renderers.JSONRenderer',  # json渲染器
+        'rest_framework.renderers.BrowsableAPIRenderer',  # 浏览API渲染器
+
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',  # 基本认证
+        'rest_framework.authentication.SessionAuthentication',  # session认证
+    ),
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',  # 限流
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day'
+    },
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+
+}

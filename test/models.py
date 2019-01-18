@@ -5,6 +5,7 @@ from django.db import models
 
 
 class PatienceInfo(models.Model):
+    id = models.IntegerField()
     pname = models.CharField(max_length=20, verbose_name='名字')
     pprice = models.IntegerField(default=10, verbose_name='价格')
     pcomment = models.IntegerField(default=0, verbose_name='评论量')

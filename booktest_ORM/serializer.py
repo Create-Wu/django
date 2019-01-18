@@ -13,7 +13,7 @@ class BookInfoSerializer(serializers.Serializer):
     """ 图书馆序列化器 """
     # 字段选项与模型选项相似
     id = serializers.IntegerField(label='ID', read_only=True)
-    bcomment = serializers.CharField(label='评论量', required=True)
+    bcomment = serializers.IntegerField(label='评论量', required=True)
     bread = serializers.IntegerField(label='阅读量', required=False)
     bpud_date = serializers.DateField(label='上传时间', required=True)
     btitle = serializers.CharField(label='名称', max_length=30)
